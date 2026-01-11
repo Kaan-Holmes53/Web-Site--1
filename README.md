@@ -18,3 +18,5 @@
 ! *If pip doesn't work:  python -m pip install flask bcrypt*
 4) **Restart Visual Studio Code, then run the app.py file while pressing F5.**
 
+**If you need help:** https://discord.gg/A5HTweqF
+
