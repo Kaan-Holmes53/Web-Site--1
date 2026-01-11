@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Rolleri Ayarla</title>
+  <style>
+    body{font-family:Inter,Arial;background:#f3f4f6;margin:0}
+    .wrap{max-width:720px;margin:40px auto;padding:20px;background:#fff;border-radius:12px}
+    table{width:100%;border-collapse:collapse}
+    td,th{padding:8px;border:1px solid #e5e7eb}
+    form{display:inline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Kullanıcı Rolleri</h2>
+    <table>
+      <tr><th>Kullanıcı</th><th>E-posta</th><th>Rol</th><th>Güncelle</th></tr>
+      {% for u,info in users.items() %}
+      <tr>
+        <td>{{ u }}</td>
+        <td>{{ info.email }}</td>
+        <td>{{ info.role }}</td>
+        <td>
+          <form method="POST">
+            <input type="hidden" name="username" value="{{ u }}">
+            <select name="role">
+              <option value="uye" {% if info.role=='uye' %}selected{% endif %}>Üye</option>
+              <option value="mod" {% if info.role=='mod' %}selected{% endif %}>Mod</option>
+              <option value="admin" {% if info.role=='admin' %}selected{% endif %}>Admin</option>
+            </select>
+            <button type="submit">Güncelle</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <p><a href="/main" style="background-color: #c7c5c5; padding: 8px; text-decoration: none; color: white; border: 1px solid white; border-radius: 16px;">Ana Sayfaya Dön</a></p>
+  </div>
+</body>
+</html>

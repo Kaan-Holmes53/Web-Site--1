@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Konu Oluştur - Forum</title>
+  <style>
+    body{font-family:Inter,Arial;background:#f3f4f6;margin:0}
+    .wrap{max-width:820px;margin:40px auto;padding:24px;background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    input,textarea,button{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #e5e7eb}
+    .back{display:inline-block;margin-top:12px;text-decoration:none;color:#374151}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Yeni Konu Oluştur</h2>
+    <form method="POST">
+      <label>Konu Başlığı</label>
+      <input type="text" name="title" required />
+      <label>Konu İçeriği</label>
+      <textarea name="content" rows="8" required></textarea>
+      <button type="submit">Oluştur</button>
+    </form>
+    <a class="back" href="/main">← Geri Dön</a>
+  </div>
+</body>
+</html>

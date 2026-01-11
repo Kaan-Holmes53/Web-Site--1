@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş / Kayıt Ol</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+
+    body {
+      height: 100vh; display: flex; justify-content: center; align-items: center;
+      background: linear-gradient(135deg, #e0e0e0, #c9c9c9);
+    }
+
+    .container {
+      width: 400px; background: #fff; border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden;
+    }
+
+    .tabs { display: flex; }
+    .tab { flex: 1; text-align: center; padding: 15px 0; cursor: pointer;
+           font-weight: 600; color: #555; background: #f0f0f0; transition: 0.3s; }
+    .tab.active { background: #fff; color: #000; border-bottom: 3px solid #777; }
+
+    .form { padding: 30px; display: none; animation: fadeIn 0.4s ease; }
+    .form.active { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .form h2 { text-align: center; margin-bottom: 20px; color: #333; }
+    .input-group { margin-bottom: 20px; }
+    .input-group label { display: block; font-size: 14px; color: #555; margin-bottom: 6px; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; outline: none; font-size: 15px; }
+    .input-group input:focus { border-color: #888; }
+
+    .btn { width: 100%; background: #555; color: white; border: none; padding: 12px; font-size: 16px;
+           border-radius: 8px; cursor: pointer; transition: 0.3s; }
+    .btn:hover { background: #333; }
+
+    @media (max-width: 500px) { .container { width: 90%; } }
+
+    .messages { padding: 10px; text-align: center; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="tabs">
+      <div class="tab active" id="login-tab">Giriş Yap</div>
+      <div class="tab" id="register-tab">Kayıt Ol</div>
+    </div>
+
+    <div class="messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <p class="{{ category }}">{{ msg }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="form active" id="login-form">
+      <h2>Giriş Yap</h2>
+      <form action="/login" method="POST">
+        <div class="input-group">
+          <label>Kullanıcı Adı</label>
+          <input type="text" name="username" required>
+        </div>
+        <div class="input-group">
+          <label>Şifre</label>
+          <input type="password" name="password" required>
+        </div>
+        <button class="btn" type="submit">Giriş Yap</button>
+      </form>
+    </div>
+
+    <div class="form" id="register-form">
+      <h2>Kayıt Ol</h2>
+      <form action="/register" method="POST">
+        <div class="input-group">
+          <label>Kullanıcı Adı</label>
+          <input type="text" name="username" required>
+        </div>
+        <div class="input-group">
+          <label>E-posta</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label>Şifre</label>
+          <input type="password" name="password" required>
+        </div>
+        <button class="btn" type="submit">Kayıt Ol</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("login-tab");
+    const registerTab = document.getElementById("register-tab");
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+
+    loginTab.onclick = () => {
+      loginTab.classList.add("active");
+      registerTab.classList.remove("active");
+      loginForm.classList.add("active");
+      registerForm.classList.remove("active");
+    };
+
+    registerTab.onclick = () => {
+      registerTab.classList.add("active");
+      loginTab.classList.remove("active");
+      registerForm.classList.add("active");
+      loginForm.classList.remove("active");
+    };
+  </script>
+
+</body>
+</html>
