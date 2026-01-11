@@ -3,7 +3,7 @@ import json, os, bcrypt
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = "4f1d8c4ac934f2a0d209f8e5347a1e9c6b82df7ea5b30f1bd7ec0b41d77aF3f1"
+app.secret_key = "your_key"
 
 DATA_FILE = "users.json"
 TOPIC_FILE = "general_topics.json"
